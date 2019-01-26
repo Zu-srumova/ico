@@ -1,0 +1,47 @@
+h1 {
+    margin-top: 2em;
+}
+
+body {
+    background-color: #B9C6AF;
+}
+
+section {
+    padding: 2rem;
+}
+
+label {
+    color: #361D2E;
+}
+
+.form-group {
+    margin-bottom: 2.5rem;
+    margin-top: 2.5rem;
+    outline: 1px dotted rgba(153, 148, 148, 0.7);
+    outline-offset: 5px;
+}
+
+
+// Barvy sekcí
+
+.zaklad {
+    background-color: #B2C4BC;
+}
+
+.stat {
+    background-color: #CBC0AD;
+}
+
+.odecist {
+    background-color: #E5BE9E;
+}
+
+.prehled {
+    background-color: #FCC594;
+}
+
+.vysledek {
+    background-color: #EDD892;
+}
+
+
