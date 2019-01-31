@@ -21,6 +21,16 @@ label {
     outline-offset: 5px;
 }
 
+input:invalid {
+    background-color: #C84630;
+    color: #270722;
+    font-weight: 700;
+} 
+
+a {
+    color: #114B5F;
+}
+
 
 // Barvy sekcí
 

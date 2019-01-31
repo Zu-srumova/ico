@@ -9,25 +9,28 @@ let v = {
 
     prijmy: undefined,
     pausal: "0.6",
-    danNaklady: undefined, // Nejsou ve formuláři, asi dodat, ideálně aby šly ručně přepsat
+    danNaklady: undefined, //jsou tam dané tak, že nejdou zadat ručně; nebude dělat bordel, kdyby byly měnitelné?
     odecitatelne: 0,
-    slevaPoplatnik: 24840,
     zakladDane: undefined,
+    slevaPoplatnik: 24840,
     slevaDalsi: 0,
     danSum: undefined,
     odvodySocialni: undefined,
     odvodyZdravotni: undefined,
     odvodySum: undefined,
-    poZdaneni: undefined, // neni ve formulari
+    PrijmyPoZdaneni: undefined,
 
-    odecistNaklady: 15800,
-    penezKPouziti: undefined, // neni ve formulari
+    odecistNaklady: 0,
+    penezKPouziti: undefined,
     odecistRezerva: 1.5,
-    dnySuperpracovni: undefined, // pracovní dny v roce + rezerva vypočtená z rezervy
 
+    cistehoMD: undefined,
     cistehoRocne: undefined,
     cistehoMesicne: undefined,
-    cistehoMD: undefined,
+
+    mzdaSuperhruba: undefined,
+    mzdaHruba: undefined,
+    mzdaCista: undefined,
 
     };
 
@@ -64,37 +67,44 @@ let vypocitej = () => {
 
     // Co celkem člověk odvede - daně, zdravotko, socka
     v.odvodySum = v.odvodySocialni + v.odvodyZdravotni + v.danSum;
-    v.poZdaneni = v.prijmy - v.odvodySum;
+    v.PrijmyPoZdaneni = v.prijmy - v.odvodySum;
 
 
 
     // Kolik musíme odečíst - reálné náklady, teď neřešim rezervu
-    v.penezKPouziti = v.poZdaneni - v.odecistNaklady;
+    v.penezKPouziti = v.PrijmyPoZdaneni - v.odecistNaklady;
 
     // Pracovní dny, na které peníze rozpočítáváme, tj. čas kolika pracovních dní reálně pokrýváme. Jsou to dny k dispozici + dovolená (= pracovní dny v roce) + pracovní dny odpovídající zvolenému počtu rezervních měsíců
-    v.dnySuperpracovni = Math.round(v.dnyPracovniVRoce + (v.dnyPracovniVRoce / 12 * v.odecistRezerva));
+    let dnySuperpracovni = Math.round(v.dnyPracovniVRoce + (v.dnyPracovniVRoce / 12 * v.odecistRezerva));
 
 
 
     // Kolik je to kurňa mrňa čistého
-    v.cistehoMD = Math.round(v.penezKPouziti / v.dnySuperpracovni);
+    v.cistehoMD = Math.round(v.penezKPouziti / dnySuperpracovni);
     v.cistehoRocne = Math.round(v.cistehoMD * v.dnyPracovniVRoce); //Dodělat vzorec na odečet dovolený a rezervy
     v.cistehoMesicne = Math.round(v.cistehoRocne / 12);
 
 
+
+    // A konečně porovnání s tou čistou mzdou na HPP
+    v.mzdaCista = v.cistehoMesicne;
+    v.mzdaHruba = Math.round(1.451 * v.mzdaCista - 2984);
+    v.mzdaSuperhruba = Math.round(1.34 * v.mzdaHruba);
+
     console.log(v);
 
+
+    // Nahází vypočtené hodnoty z objektu zpátky do formuláře
     Object.entries(v).forEach(([key, value]) => {
         document.querySelector(`#${key}`).value = value;
+        console.log(key, document.querySelector(`#${key}`))
       });
-
-
-
-
 };
 
 vypocitej();
 
+
+// Miloš zachytí změnu na políčkách ve formuláři a spustí počítání
 let Miloš = (event) => {
     if (event.target.valueAsNumber === undefined) {
         v[event.target.id] = event.target.value;
@@ -102,12 +112,10 @@ let Miloš = (event) => {
         v[event.target.id] = event.target.valueAsNumber;
     }    
     vypocitej();
-
 };
 
+
+// Inputům a selectům nastaví, aby, když se jejich hodnota změní, spustili Miloše
 document.querySelectorAll("input, select").forEach((item) => {
     item.addEventListener("change", Miloš);
 });
-
-
-
