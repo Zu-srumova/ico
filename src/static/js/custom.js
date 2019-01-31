@@ -97,7 +97,7 @@ let vypocitej = () => {
     // Nahází vypočtené hodnoty z objektu zpátky do formuláře
     Object.entries(v).forEach(([key, value]) => {
         document.querySelector(`#${key}`).value = value;
-        console.log(key, document.querySelector(`#${key}`))
+        // console.log(key, document.querySelector(`#${key}`))
       });
 };
 
@@ -118,4 +118,19 @@ let Miloš = (event) => {
 // Inputům a selectům nastaví, aby, když se jejich hodnota změní, spustili Miloše
 document.querySelectorAll("input, select").forEach((item) => {
     item.addEventListener("change", Miloš);
+});
+
+
+const nefahodiny = document.getElementById("nefakturovano");
+const nefajednotka = document.getElementById("nefakturovanoJednotka");
+
+console.log(nefajednotka.value);
+
+nefajednotka.addEventListener("change", function (event) {
+  if (nefajednotka.value === "denně") {
+    document.getElementById("nefakturovano").max = "8";
+  } else {
+    document.getElementById("nefakturovano").max = "1000000";
+
+  }
 });
