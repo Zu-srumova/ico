@@ -36,6 +36,13 @@ a {
     font-weight: 700;
 }
 
+.validation-error {
+    display: none;
+    background-color: $danger;
+    font-weight: 700;
+    padding: 0.5em;
+}
+
 
 // Barvy sekcí
 

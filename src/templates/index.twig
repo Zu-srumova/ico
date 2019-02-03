@@ -6,14 +6,16 @@
 
 <div class="container">
     <h1>IČO → HPP</h1>
-    <p>Krásný text o tom, co, proč a jak.</p>
+    <p>Toto přepočítávátko vzniklo pro všechny, kdo potřebují porovnat práci jako zaměstnanec a na IČO. A mají třeba pocit, jak je IČO výhodné a jak se budou topit v penězích.</p>
+    <p>Než začnou pořádně počítat.</p>
 </div>
     <form>
         <section class="zaklad"> 
             <div class="container">
                 <h2>Kolik hodin odpracujete – a kolik si budete fakturovat</h2>
-                <p>Zaměstnanec má zpravidla pracovní dobu jasnou. Jinak je to ale u živnostníka.<br>Budete fakturovat denně klasických 8 hodin, nebo jen hodiny opravdové intenzivní práce (většinou 5–6)?<br>Kolik dnů budete mít dovolenou, tedy volno, na které si musíte našetřit?<br>Kolik hodin strávíte nefakturovanou prací, ať už sháněním zákazníků, administrativou nebo třeba řešením daňového přiznání?</p>
+                <p>Zaměstnanec má zpravidla pracovní dobu jasnou. Jinak je to ale u živnostníka.<br>Budete fakturovat denně klasických 8 hodin, nebo jen hodiny opravdové intenzivní práce?<br>Kolik dnů budete mít dovolenou, tedy volno, na které si musíte našetřit?<br>Kolik hodin strávíte nefakturovanou prací, ať už sháněním zákazníků, administrativou nebo třeba řešením daňového přiznání?</p>
 
+                <a href="https://www.facebook.com/eva.turnova.5/posts/10155948886796787">Supr návod na počítání hodin práce u autorské činnosti</a>
                 <div class="form-group row">
                     <label for="dnyPracovniVRoce" class="col-md-2 col-form-label col-form-label-md">Pracovních dní v roce</label>
                     <div class="col-md-2">
@@ -41,19 +43,26 @@
                     <div class="col-md-5"></div>
                 </div> 
                 <div class="form-group row">
-                    <label for="nefakturovano" class="col-md-2 col-form-label col-form-label-md">Nefakturovaná práce</label>
+                    <label for="nefakturovano" class="col-md-2 col-form-label col-form-label-md">z toho nefakturovaných</label>
                     <div class="col-md-2">
                         <input type="number" class="form-control form-control-md" name="nefakturovano" id="nefakturovano" value="80" min="0" required>
                     </div>
                     <label for="nefakturovanoJednotka" class="col-md-1 col-form-label col-form-label-md">hodin</label>
                     <div class="col-md-2">
                         <select class="form-control form-control-md" name="nefakturovanoJednotka" id="nefakturovanoJednotka">
-                            <option value="ročně">ročně</option>
-                            <option value="měsíčně">měsíčně</option>
-                            <option value="denně">denně</option>
+                            <option value="y">ročně</option>
+                            <option value="m">měsíčně</option>
+                            <option value="d">denně</option>
                         </select>
                     </div> 
+                    <label for="nefakturovanoRocne" class="col-md-1 col-form-label col-form-label-md">ročně</label>
+                    <div class="col-md-2">
+                        <input type="number" readonly class="form-control-plaintext form-control-md" name="nefakturovanoRocne" id="nefakturovanoRocne" min="0">
+                    </div> 
                 </div> 
+                <p class="validation-error" id="valiNefa1">Zadali jste vyšší počet nefakturovaných hodin, než je možné v zadaném čase odvést.<br>Zkontrolujte, kolik hodin chcete denně pracovat a kolik z toho fakturovat.</p>
+                <p class="validation-error" id="valiNefa2">Snažíte se pracovat zdarma stejně nebo více hodin, než pracujete celkem.</p>
+
             </div>
         </section>
 

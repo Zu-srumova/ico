@@ -145,7 +145,7 @@ gulp.task(
         return surge({
             project: "dist",
             // change to your domain
-            domain: "https://my-first-website.surge.sh"
+            domain: "https://osvc.surge.sh"
             // note 1: URL must end .surge.sh if you haven’t bought yours and configured DNS
             // note 2: https for custom domains is a paid feature
         });

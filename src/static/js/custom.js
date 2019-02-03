@@ -1,3 +1,5 @@
+// Je to česky, protože to stejně použitelný jenom pro Čechy, plus spoustu těch termínů bych musela dohledávat (a asi mimo český kontext by měly i jiný význam). Sorry jako.
+
 let v = {
     dnyPracovniVRoce: 251,
     dovolena: 20,
@@ -5,7 +7,8 @@ let v = {
     hodinovka: 300,
     hodinDenne: 5,
     nefakturovano: 80,
-    nefakturovanoJednotka: "ročně",
+    nefakturovanoJednotka: "y",
+    nefakturovanoRocne: undefined,
 
     prijmy: undefined,
     pausal: "0.6",
@@ -37,23 +40,26 @@ let v = {
 let vypocitej = () => {
     v.dnyRealnePracovni = v.dnyPracovniVRoce - v.dovolena;
 
-    // Počet nefakturovaných hodin v roce (podle počtu pracovních dnů/měsíců)
+    
+        // Počet nefakturovaných hodin v roce (podle počtu pracovních dnů/měsíců)
     let nefakturovanoJednotkaNum;
-    if (v.nefakturovanoJednotka === "ročně") {
+    if (v.nefakturovanoJednotka === "y") {
         nefakturovanoJednotkaNum = 1;
-    } else if (v.nefakturovanoJednotka === "měsíčně") {
+    } else if (v.nefakturovanoJednotka === "m") {
         nefakturovanoJednotkaNum = 12;
-    } else if (v.nefakturovanoJednotka === "denně") {
+    } else if (v.nefakturovanoJednotka === "d") {
         nefakturovanoJednotkaNum = v.dnyRealnePracovni;
     }
 
-
+    console.log(nefakturovanoJednotkaNum);
 
     // Počítá příjem v roce, resp. spíš obrat
     v.prijmy = (v.hodinDenne * v.dnyRealnePracovni - (v.nefakturovano * nefakturovanoJednotkaNum)) * v.hodinovka;
 
+    v.nefakturovanoRocne = v.nefakturovano * nefakturovanoJednotkaNum;
+
     // Daňově uznatelné náklady počítané podle zadaného paušálu
-    v.danNaklady = v.prijmy * (1 - Number(v.pausal))
+    v.danNaklady = Math.round(v.prijmy * (1 - Number(v.pausal)));
 
     // Základ daně - příjmy minus odečitatelné položky (dary atp.)
     v.zakladDane = v.danNaklady - v.odecitatelne;
@@ -121,16 +127,47 @@ document.querySelectorAll("input, select").forEach((item) => {
 });
 
 
+// Validation
+
 const nefahodiny = document.getElementById("nefakturovano");
 const nefajednotka = document.getElementById("nefakturovanoJednotka");
+const hDenne = document.getElementById("hodinDenne");
 
-console.log(nefajednotka.value);
 
+
+// Validace: Nesmyslný počet nefakturovaných hodin vzhledem k časové jednotce, za kterou jsou vykonávány
 nefajednotka.addEventListener("change", function (event) {
-  if (nefajednotka.value === "denně") {
-    document.getElementById("nefakturovano").max = "8";
+  if (v.nefakturovanoJednotka === "d") {
+    document.getElementById("nefakturovano").max = 8;
   } else {
-    document.getElementById("nefakturovano").max = "1000000";
-
+    document.getElementById("nefakturovano").max = v.hodinRocne;
   }
+  validateNefa();
 });
+
+// Když se změněj hodiny, spusť validaci
+nefahodiny.addEventListener("change", function (event) {
+    validateNefa();
+});
+
+let validateNefa = () => {
+    if (v.nefakturovano > nefahodiny.max) {  //heeej, tohle funguje.
+        document.getElementById("valiNefa1").style.display = "block";
+    } else {
+        document.getElementById("valiNefa1").style.display = "none";
+    }
+
+    // Příliš mnoho nefakturované práce
+    let hodinRocne = v.hodinDenne * v.dnyRealnePracovni;
+    if (v.nefakturovanoRocne >= hodinRocne) {
+        document.getElementById("nefakturovano").max = hodinRocne;
+        document.getElementById("valiNefa2").style.display = "block";
+    } else {
+        document.getElementById("valiNefa2").style.display = "none";
+        console.log(`hodin Rocne ${hodinRocne}`);
+
+    }
+};
+
+
+
