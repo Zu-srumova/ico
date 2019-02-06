@@ -13,17 +13,17 @@ let v = {
     prijmy: undefined,
     pausalNum: undefined,
     danNaklady: undefined, //jsou tam dané tak, že nejdou zadat ručně; nebude dělat bordel, kdyby byly měnitelné?
-    odecitatelne: 0,
+    odecitatelne: 2000,
     zakladDane: undefined,
     slevaPoplatnik: 24840,
-    slevaDalsi: 0,
+    slevaDalsi: 2000,
     danSum: undefined,
     odvodySocialni: undefined,
     odvodyZdravotni: undefined,
     odvodySum: undefined,
     PrijmyPoZdaneni: undefined,
 
-    odecistNaklady: 0,
+    odecistNaklady: 2000,
     penezKPouziti: undefined,
     odecistRezerva: 1.5,
 
@@ -113,7 +113,7 @@ let reCount = () => {
 
     // Nahází vypočtené hodnoty z objektu zpátky do formuláře. Pokud najde daný klíč.
     Object.entries(v).forEach(([key, value]) => {
-        // console.log(key, value);
+        console.log(key, value);
         if (document.querySelector(`#${key}`)) {
             document.querySelector(`#${key}`).value = value;
         }
