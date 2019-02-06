@@ -161,29 +161,29 @@ nefajednotka.addEventListener("change", function (event) {
   validateNefa();
 });
 
-// Když se změněj hodiny, spusť validaci
-nefahodiny.addEventListener("change", function (event) {
-    validateNefa();
-});
+// // Když se změněj hodiny, spusť validaci
+// nefahodiny.addEventListener("change", function (event) {
+//     validateNefa();
+// });
 
-let validateNefa = () => {
-    if (v.nefakturovano > nefahodiny.max) {  //heeej, tohle funguje.
-        document.getElementById("valiNefa1").style.display = "block";
-    } else {
-        document.getElementById("valiNefa1").style.display = "none";
-    }
+// let validateNefa = () => {
+//     if (v.nefakturovano > nefahodiny.max) {  //heeej, tohle funguje.
+//         document.getElementById("valiNefa1").style.display = "block";
+//     } else {
+//         document.getElementById("valiNefa1").style.display = "none";
+//     }
 
-    // Příliš mnoho nefakturované práce
-    let hodinRocne = v.hodinDenne * v.dnyRealnePracovni;
-    if (v.nefakturovanoRocne >= hodinRocne) {
-        document.getElementById("nefakturovano").max = hodinRocne;
-        document.getElementById("valiNefa2").style.display = "block";
-    } else {
-        document.getElementById("valiNefa2").style.display = "none";
-        console.log(`hodin Rocne ${hodinRocne}`);
+//     // Příliš mnoho nefakturované práce
+//     let hodinRocne = v.hodinDenne * v.dnyRealnePracovni;
+//     if (v.nefakturovanoRocne >= hodinRocne) {
+//         document.getElementById("nefakturovano").max = hodinRocne;
+//         document.getElementById("valiNefa2").style.display = "block";
+//     } else {
+//         document.getElementById("valiNefa2").style.display = "none";
+//         console.log(`hodin Rocne ${hodinRocne}`);
 
-    }
-};
+//     }
+// };
 
 
 
