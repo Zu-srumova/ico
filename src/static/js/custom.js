@@ -11,11 +11,7 @@ let v = {
     nefakturovanoRocne: undefined,
 
     prijmy: undefined,
-    pausal30: 0.30,
-    pausal40: 0.40,
-    pausal60: 0.60,
-    pausal80: 0.80,
-    pausalNum: undefined, //přidávám, abych měla jak kalkulovat paušál
+    pausalNum: undefined,
     danNaklady: undefined, //jsou tam dané tak, že nejdou zadat ručně; nebude dělat bordel, kdyby byly měnitelné?
     odecitatelne: 0,
     zakladDane: undefined,
@@ -41,7 +37,7 @@ let v = {
 
     };
 
-let vypocitej = () => {
+let reCount = () => {
     v.dnyRealnePracovni = v.dnyPracovniVRoce - v.dovolena;
 
     
@@ -115,30 +111,35 @@ let vypocitej = () => {
     console.log(v);
 
 
-    // Nahází vypočtené hodnoty z objektu zpátky do formuláře
+    // Nahází vypočtené hodnoty z objektu zpátky do formuláře. Pokud najde daný klíč.
     Object.entries(v).forEach(([key, value]) => {
-        document.querySelector(`#${key}`).value = value;
-        // console.log(key, document.querySelector(`#${key}`))
+        // console.log(key, value);
+        if (document.querySelector(`#${key}`)) {
+            document.querySelector(`#${key}`).value = value;
+        }
       });
 };
 
-vypocitej();
+reCount();
 
 
-// Miloš zachytí změnu na políčkách ve formuláři a spustí počítání
-let Miloš = (event) => {
-    if (event.target.valueAsNumber === undefined) {
-        v[event.target.id] = event.target.value;
-    } else {
-        v[event.target.id] = event.target.valueAsNumber;
-    }    
-    vypocitej();
+// Zachytí změnu na políčkách ve formuláři, narve to do objektu „v“ a spustí počítání. Bohužel se už nejmenuje Miloš, protože se to Danovi nelíbí.
+let applyChanges = (event) => {
+    if (v[event.target.id]) {
+        if (event.target.valueAsNumber === undefined) {
+            v[event.target.id] = event.target.value;
+        } else {
+            v[event.target.id] = event.target.valueAsNumber;
+        }    
+    }
+    
+    reCount();
 };
 
 
 // Inputům a selectům nastaví, aby, když se jejich hodnota změní, spustili Miloše
 document.querySelectorAll("input, select").forEach((item) => {
-    item.addEventListener("change", Miloš);
+    item.addEventListener("change", applyChanges);
 });
 
 
