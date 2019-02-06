@@ -3,186 +3,201 @@
 {% block title %}OSVČ → HPP{% endblock %}
 
 {% block content %}
+<form>
+    <div class="grid-container">
+        <section class="nadpis"> 
+            <h1>IČO → HPP</h1>
+            <p>Toto přepočítávátko vzniklo pro ty, kdo potřebují porovnat práci jako zaměstnanec a na IČO. A mají třeba pocit, jak je IČO výhodné a jak se budou topit v penězích.</p>
+            <p>Než začnou pořádně počítat.</p>
+            <p>Předpokládá, že člověk využívá daňový paušál a není plátce DPH.</p>
+        </section>
 
-<div class="container">
-    <h1>IČO → HPP</h1>
-    <p>Toto přepočítávátko vzniklo pro všechny, kdo potřebují porovnat práci jako zaměstnanec a na IČO. A mají třeba pocit, jak je IČO výhodné a jak se budou topit v penězích.</p>
-    <p>Než začnou pořádně počítat.</p>
-</div>
-    <form>
+        <noscript>
+        <p class="error">Tahle kalkulačka funguje pomocí JavaScriptu, který nemáte/nemáte zapnutý. Sorry jako.</p>
+        </noscript>
+
         <section class="zaklad"> 
-            <div class="container">
-                <h2>Kolik hodin odpracujete – a kolik si budete fakturovat</h2>
-                <p>Zaměstnanec má zpravidla pracovní dobu jasnou. Jinak je to ale u živnostníka.<br>Budete fakturovat denně klasických 8 hodin, nebo jen hodiny opravdové intenzivní práce?<br>Kolik dnů budete mít dovolenou, tedy volno, na které si musíte našetřit?<br>Kolik hodin strávíte nefakturovanou prací, ať už sháněním zákazníků, administrativou nebo třeba řešením daňového přiznání?</p>
+            <h2>Základní údaje</h2>
 
-                <a href="https://www.facebook.com/eva.turnova.5/posts/10155948886796787">Supr návod na počítání hodin práce u autorské činnosti</a>
-                <div class="form-group row">
-                    <label for="dnyPracovniVRoce" class="col-md-2 col-form-label col-form-label-md">Pracovních dní v roce</label>
-                    <div class="col-md-2">
-                        <input type="number" readonly class="form-control-plaintext form-control-md" name="dnyPracovniVRoce" id="dnyPracovniVRoce" value="251" required>
-                    </div>
-                    <label for="dovolena" class="col-md-2 col-form-label col-form-label-md">Dní dovolené</label>
-                    <div class="col-md-1">
-                        <input type="number"  class="form-control form-control-md" name="dovolena" id="dovolena" value="20" min="0" max="250" required>
-                    </div>
-                    <div class="col-md-1"></div>
-                    <label for="dnyRealnePracovni" class="col-md-2 col-form-label col-form-label-md">Dní k dispozici</label>
-                    <div class="col-md-1">
-                        <input type="number" readonly class="form-control-plaintext form-control-md" value="231" name="dnyRealnePracovni" id="dnyRealnePracovni">
-                    </div> 
-                </div> 
-                <div class="form-group row">
-                    <label for="hodinovka" class="col-md-2 col-form-label col-form-label-md">Hodinová mzda [Kč/h]</label>
-                    <div class="col-md-2">
-                        <input type="number" class="form-control form-control-md" name="hodinovka" id="hodinovka" value="300" step="5" min="80" max="10000" required>
-                    </div>
-                    <label for="hodinDenne" class="col-md-2 col-form-label col-form-label-md">Denně hodin práce</label>
-                    <div class="col-md-1">
-                        <input type="number"  class="form-control form-control-md" name="hodinDenne" id="hodinDenne" value="5" min="0" max="16" required>
-                    </div>
-                    <div class="col-md-5"></div>
-                </div> 
-                <div class="form-group row">
-                    <label for="nefakturovano" class="col-md-2 col-form-label col-form-label-md">z toho nefakturovaných</label>
-                    <div class="col-md-2">
-                        <input type="number" class="form-control form-control-md" name="nefakturovano" id="nefakturovano" value="80" min="0" required>
-                    </div>
-                    <label for="nefakturovanoJednotka" class="col-md-1 col-form-label col-form-label-md">hodin</label>
-                    <div class="col-md-2">
-                        <select class="form-control form-control-md" name="nefakturovanoJednotka" id="nefakturovanoJednotka">
-                            <option value="y">ročně</option>
-                            <option value="m">měsíčně</option>
-                            <option value="d">denně</option>
-                        </select>
-                    </div> 
-                    <label for="nefakturovanoRocne" class="col-md-1 col-form-label col-form-label-md">ročně</label>
-                    <div class="col-md-2">
-                        <input type="number" readonly class="form-control-plaintext form-control-md" name="nefakturovanoRocne" id="nefakturovanoRocne" min="0">
-                    </div> 
-                </div> 
-                <p class="validation-error" id="valiNefa1">Zadali jste vyšší počet nefakturovaných hodin, než je možné v zadaném čase odvést.<br>Zkontrolujte, kolik hodin chcete denně pracovat a kolik z toho fakturovat.</p>
-                <p class="validation-error" id="valiNefa2">Snažíte se pracovat zdarma stejně nebo více hodin, než pracujete celkem.</p>
-
+            <div class="form-group d-none">
+                <label for="dnyPracovniVRoce" class="form-label">Pracovních dní v roce</label>
+                <input type="number" readonly class="form-control-plaintext" name="dnyPracovniVRoce" id="dnyPracovniVRoce" value="2510" required>
             </div>
+            <div class="form-group">
+                <label for="dovolena" class="form-label">Dní dovolené</label>
+                <input type="number"  class="form-control form-control-small" name="dovolena" id="dovolena" value="20" min="0" max="250" required>
+                <small class="form-text text-muted">Kolik pracovních dní dovolené si chcete dopřát?</small>
+            </div>
+            <div class="form-group d-none">
+                <label for="dnyRealnePracovni" class="form-label">Dní k dispozici</label>
+                <input type="number" readonly class="form-control-plaintext" value="231" name="dnyRealnePracovni" id="dnyRealnePracovni">
+                <small class="form-text text-muted">Tolik dní je reálně k dispozici k práci (pracovní dny bez dovolené).</small>
+            </div> 
+            <div class="form-group">
+                <label for="hodinovka" class="form-label">Hodinová mzda [Kč/h]</label>
+                <input type="number" class="form-control form-control-small" name="hodinovka" id="hodinovka" value="300" step="5" min="80" max="10000" required>
+            </div>
+            <div class="form-group">
+                <label for="hodinDenne" class="form-label">Denně hodin práce</label>
+                <input type="number"  class="form-control form-control-small" name="hodinDenne" id="hodinDenne" value="5" min="0" max="16" required>
+                <small class="form-text text-muted">Kolik hodin práce denně odpracujete?<br>Fakturované i nefakturované hodiny dohromady.</small>
+            </div>
+            <div class="form-group">
+                <label for="nefakturovano" class="form-label">z toho je nefakturovaných</label><br>
+                <input type="number" class="form-control form-control-small custom-control-inline" name="nefakturovano" id="nefakturovano" value="80" min="0" required>
+                <label for="nefakturovanoJednotka" class="form-label">hodin</label>
+                <select class="form-control form-control-small custom-control-inline" name="nefakturovanoJednotka" id="nefakturovanoJednotka">
+                    <option value="y">ročně</option>
+                    <option value="m">měsíčně</option>
+                    <option value="d">denně</option>
+                </select>
+            </div> 
+            <div class="form-group d-none">
+                <label for="nefakturovanoRocne" class="form-label">ročně</label>
+                <input type="number" readonly class="form-control-plaintext" name="nefakturovanoRocne" id="nefakturovanoRocne" min="0">
+            </div> 
+        </form>
+            <p class="error" id="valiNefa1">Zadali jste vyšší počet nefakturovaných hodin, než je možné v zadaném čase odvést.<br>Zkontrolujte, kolik hodin chcete denně pracovat a kolik z toho fakturovat.</p>
+            <p class="error" id="valiNefa2">Snažíte se pracovat zdarma stejně nebo více hodin, než pracujete celkem.</p>
         </section>
 
         <section class="stat">
-            <div class="container">
-                <h2>Vaše příjmy – a kolik z nich odvedete státu</h2>
+            <h2>Vaše příjmy a daně</h2>
 
-                <div class="form-group row">
-                    <label for="prijmy" class="col-md-3 col-form-label col-form-label-md">Příjmy [Kč]</label>
-                    <input type="number" readonly class="form-control-plaintext form-control-md col-md-2" name="prijmy" id="prijmy" value="322500">
-                    <label for="pausal" class="col-md-1 col-form-label col-form-label-md">Paušál</label>
-                    <select class="custom-select col-md-1"name="pausal" id="pausal" required>
-                        <option value="0.6">60 %</option>
-                        <option value="0.3">30 %</option>
-                        <option value="0.4">40 %</option>
-                        <option value="0.8">80 %</option>
-                    </select>
-                    <div class="col-md-1"></div>
-                    <label for="danNaklady" class="col-md-2 col-form-label col-form-label-md">Daňově uzn. náklady [Kč]</label>
-                    <input type="number" readonly class="form-control-plaintext form-control-md col-md-2" name="danNaklady" id="danNaklady" value="322500">
-                </div> 
-                
-                <div class="form-group row">
-                    <label for="odecitatelne" class="col-md-3 col-form-label col-form-label-md">Odečitatelné položky [Kč]</label>
-                    <input type="number" class="form-control form-control-md col-md-2" name="odecitatelne" id="odecitatelne" value="0">
-                    <div class="col-md-12"></div>
-                    <label for="zakladDane" class="col-md-3 col-form-label col-form-label-md">Základ daně [Kč]</label>
-                    <input type="number" readonly class="form-control-plaintext form-control-md col-md-2" name="zakladDane" id="zakladDane" value="0">
-                </div> 
-
-                <div class="form-group row">
-                    <label for="slevaPoplatnik" class="col-md-2 col-form-label col-form-label-md">Sleva na poplatníka [Kč]</label>
-                    <input type="number" readonly class="form-control-plaintext form-control-md col-md-2" name="slevaPoplatnik" id="slevaPoplatnik" value="24840">
-                    <label for="slevaDalsi" class="col-md-2 col-form-label col-form-label-md">Další slevy [Kč]</label>
-                    <input type="number" class="form-control form-control-md col-md-2" name="slevaDalsi" id="slevaDalsi" value="0">
-                    <label for="danSum" class="col-md-2 col-form-label col-form-label-md">Daň [Kč]</label>
-                    <input type="number" readonly class="form-control-plaintext form-control-md col-md-2" name="danSum" id="danSum" value="0">
-                </div> 
-
-                <div class="form-group row">
-                    <label for="odvodySocialni" class="col-md-2 col-form-label col-form-label-md">Sociální pojištění [Kč]</label>
-                    <input type="number" readonly class="form-control-plaintext form-control-md col-md-2" name="odvodySocialni" id="odvodySocialni" value="0">
-                    <label for="odvodyZdravotni" class="col-md-2 col-form-label col-form-label-md">Zdrav. pojištění [Kč]</label>
-                    <input type="number" readonly class="form-control-plaintext form-control-md col-md-2" name="odvodyZdravotni" id="odvodyZdravotni" value="0">
-                    <label for="odvodySum" class="col-md-2 col-form-label col-form-label-md">Odvody celkem [Kč]</label>
-                    <input type="number" readonly class="form-control-plaintext form-control-md col-md-2" name="odvodySum" id="odvodySum" value="0">
-                </div> 
-                <div class="form-group row">
-                    <label for="PrijmyPoZdaneni" class="col-md-2 col-form-label col-form-label-md">Příjmy po zdanění [Kč]</label>
-                    <input type="number"  readonly class="form-control-plaintext form-control-md col-md-2" name="PrijmyPoZdaneni" id="PrijmyPoZdaneni" value="0">
-                </div> 
+            <div class="form-group d-none">
+                <label for="prijmy" class="form-label">Příjmy [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext" name="prijmy" id="prijmy" value="322500">
             </div>
+            <div class="form-group">
+                <p class="form-label">Paušál, podle kterého své příjmy daníte:</p>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="pausal30" name="pausal" value="0.30" class="custom-control-input">
+                    <label class="custom-control-label" for="pausal30">30 %</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="pausal40" name="pausal" value="0.40" class="custom-control-input">
+                    <label class="custom-control-label" for="pausal40">40 %</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="pausal60" name="pausal" value="0.60" class="custom-control-input" checked>
+                    <label class="custom-control-label" for="pausal60">60 %</label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="pausal80" name="pausal" value="0.80" class="custom-control-input">
+                    <label class="custom-control-label" for="pausal80">80 %</label>
+                </div>
+                <small class="form-text text-muted">Jaký daňový paušál uplatňujete? <a href="http://www.jakpodnikat.cz/pausalni-vydaje-procentem.php">Nevíte-li, zjistěte.</a></small>
+    {#                           
+                <select class="custom-select"name="pausal" id="pausal" required>
+                    <option value="0.6">60 %</option>
+                    <option value="0.3">30 %</option>
+                    <option value="0.4">40 %</option>
+                    <option value="0.8">80 %</option>
+                </select> #}
+            </div>
+            <div class="form-group d-none">
+                    <label for="pausalNum" class="form-label">Číselná hodnota paušálu</label>
+                    <input type="number" readonly class="form-control-plaintext" name="danNaklady" id="pausalNum">
+                </div> 
+            <div class="form-group d-none">
+                <label for="danNaklady" class="form-label">Daňově uzn. náklady [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext" name="danNaklady" id="danNaklady" value="322500">
+            </div> 
+            <div class="form-group">
+                <label for="odecitatelne" class="form-label">Odečitatelné položky [Kč]</label>
+                <input type="number" class="form-control form-control-small" name="odecitatelne" id="odecitatelne" value="0">
+                <small class="form-text text-muted">Dary, krev, pojištění…</small>
+            </div> 
+            <div class="form-group d-none">
+                <label for="zakladDane" class="form-label">Základ daně [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext" name="zakladDane" id="zakladDane" value="0">
+            </div> 
+            <div class="form-group d-none">
+                <label for="slevaPoplatnik" class="form-label">Sleva na poplatníka [Kč]</label>
+                <input type="number" class="form-control form-control-small" name="slevaPoplatnik" id="slevaPoplatnik" value="24840">
+            </div> 
+            <div class="form-group">
+                <label for="slevaDalsi" class="form-label">Další slevy [Kč]</label>
+                <input type="number" class="form-control form-control-small" name="slevaDalsi" id="slevaDalsi" value="0">
+                <small class="form-text text-muted">Školkovné…</a></small>
+            </div> 
+            <div class="form-group d-none">
+                <label for="danSum" class="form-label">Daň [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext" name="danSum" id="danSum" value="0">
+            </div> 
+            <div class="form-group d-none">
+                <label for="odvodySocialni" class="form-label">Sociální pojištění [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext" name="odvodySocialni" id="odvodySocialni" value="0">
+            </div> 
+            <div class="form-group d-none">
+                <label for="odvodyZdravotni" class="form-label">Zdrav. pojištění [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext" name="odvodyZdravotni" id="odvodyZdravotni" value="0">
+            </div> 
+            <div class="form-group d-none">
+                <label for="odvodySum" class="form-label">Odvody celkem [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext" name="odvodySum" id="odvodySum" value="0">
+            </div> 
+            <div class="form-group d-none">
+                <label for="PrijmyPoZdaneni" class="form-label">Příjmy po zdanění [Kč]</label>
+                <input type="number"  readonly class="form-control-plaintext" name="PrijmyPoZdaneni" id="PrijmyPoZdaneni" value="0">
+            </div> 
         </section>
 
         <section class="odecist">
-            <div class="container">
-                <h2>Náklady – aneb co ještě musíme odečíst</h2>
-                <div class="form-group row">
-                    <label for="odecistNaklady" class="col-md-2 col-form-label col-form-label-md">Roční náklady [Kč]</label>
-                    <input type="number" class="form-control form-control-md col-md-2" name="odecistNaklady" id="odecistNaklady" min="0" value="0">
-                    <label for="odecistNaklady" class="col-md-8 col-form-label col-form-label-md">(pracovní nástroje, účetní, pojištění, doprava k zákazníkům,…)</label>
-                </div> 
-                <div class="form-group row">
-                    <label for="penezKPouziti" class="col-md-2 col-form-label col-form-label-md">Peněz k dispozici [Kč]</label>
-                    <input type="number" readonly class="form-control-plaintext form-control-md col-md-2" name="penezKPouziti" id="penezKPouziti" min="0" value="0">
-                    <label for="penezKPouziti" class="col-md-8 col-form-label col-form-label-md">(kolik reálně po odečtení nákladů vyděláte)</label>
-                </div> 
-                <div class="form-group row">
-                    <label for="odecistRezerva" class="col-md-2 col-form-label col-form-label-md">Rerezva [měsíce]</label>
-                    <input type="number" class="form-control form-control-md col-md-2" name="odecistRezerva" id="odecistRezerva" min="0" value="1.5" max="12" step="0.25" required>
-                    <label for="odecistRezerva" class="col-md-8 col-form-label col-form-label-md">(finanční rezerva jako kompenzace odstupného při výpovědi)</label>
-                </div> 
-                
-            </div>
+            <h2>Náklady a rezervy</h2>
+            <div class="form-group">
+                <label for="odecistNaklady" class="form-label">Roční náklady [Kč]</label>
+                <input type="number" class="form-control form-control-small" name="odecistNaklady" id="odecistNaklady" min="0" value="0">
+                <small class="form-text text-muted">Náklady na podnikání: pracovní nástroje a materiál, účetní, pojištění, doprava k zákazníkům…</small>
+            </div> 
+            <div class="form-group d-none">
+                <label for="penezKPouziti" class="form-label">Peněz k dispozici [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext form-control-small" name="penezKPouziti" id="penezKPouziti" min="0" value="0">
+                <small class="form-text text-muted">Kolik reálně po odečtení nákladů vyděláte?</small>
+            </div> 
+            <div class="form-group">
+                <label for="odecistRezerva" class="form-label">Rezerva [měsíce]</label>
+                <input type="number" class="form-control form-control-small" name="odecistRezerva" id="odecistRezerva" min="0" value="1.5" max="12" step="0.25" required>
+                <small class="form-text text-muted">Zaměstnanec při výpovědi dostane odstupné.<br>Na jak velkou rezervu si chcete za rok uspořit vy?</small>
+            </div> 
         </section>
 
         <section class="prehled">
-            <div class="container">
-                <h2>Kolik je to čistého</h2>
-                <div class="form-group row">
-                    <label for="cistehoRocne" class="col-md-2 col-form-label col-form-label-md">Ročně [Kč]</label>
-                    <div class="col-md-2">
-                        <input type="number" readonly class="form-control-plaintext form-control-md" name="cistehoRocne" id="cistehoRocne" value="0">
-                    </div>
-                    <label for="cistehoMesicne" class="col-md-2 col-form-label col-form-label-md">Měsíčně [Kč]</label>
-                    <div class="col-md-2">
-                        <input type="number" readonly class="form-control-plaintext form-control-md" name="cistehoMesicne" id="cistehoMesicne" value="0">
-                    </div>
-                    <label for="cistehoMD" class="col-md-2 col-form-label col-form-label-md">Denně [Kč]</label>
-                    <div class="col-md-2">
-                        <input type="number" readonly class="form-control-plaintext form-control-md" name="cistehoMD" id="cistehoMD" value="0">
-                    </div> 
-                </div> 
-            </div>
+            <h2>Kolik je to čistého</h2>
+            <div class="form-group">
+                <label for="cistehoRocne" class="form-label">Ročně [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext form-control-small" name="cistehoRocne" id="cistehoRocne" value="0">
+            </div> 
+            <div class="form-group">
+                <label for="cistehoMesicne" class="form-label">Měsíčně [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext form-control-small" name="cistehoMesicne" id="cistehoMesicne" value="0">
+            </div> 
+            <div class="form-group">
+                <label for="cistehoMD" class="form-label">Denně [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext form-control-small" name="cistehoMD" id="cistehoMD" value="0">
+            </div> 
         </section>
 
         <section class="vysledek">
-            <div class="container">
-                <h2>Porovnání s měsíční mzdou při HPP</h2>
-                <p>Zadaná hodinovka na IČO zhruba odpovídá následující měsíční mzdě na HPP. Výpočet je orientační a nezohledňuje děti a další parametry, pro přesnou hodnotu zadejte vypočtenou čistou měsíční mzdu do kalkulátoru na Měšci nebo tak něco.</p>
-
-                <div class="form-group row">
-                    <label for="mzdaSuperhruba" class="col-md-2 col-form-label col-form-label-md">Superhrubá mzda [Kč]</label>
-                    <div class="col-md-2">
-                        <input type="number" readonly class="form-control-plaintext form-control-md" name="mzdaSuperhruba" id="mzdaSuperhruba" value="0">
-                    </div>
-                    <label for="mzdaHruba" class="col-md-2 col-form-label col-form-label-md">Hrubého [Kč]</label>
-                    <div class="col-md-2">
-                        <input type="number" readonly class="form-control-plaintext form-control-md" name="mzdaHruba" id="mzdaHruba" value="0">
-                    </div>
-                    <label for="mzdaCista" class="col-md-2 col-form-label col-form-label-md">Čistého [Kč]</label>
-                    <div class="col-md-2">
-                        <input type="number" readonly class="form-control-plaintext form-control-md" name="mzdaCista" id="mzdaCista" value="0">
-                    </div> 
-                </div> 
-            </div>
+            <h2>Porovnání s HPP</h2>
+            <div class="form-group">
+                <label for="mzdaSuperhruba" class="form-label">Superhrubá mzda [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext form-control-small" name="mzdaSuperhruba" id="mzdaSuperhruba" value="0">
+            </div> 
+            <div class="form-group">
+                <label for="mzdaHruba" class="form-label">Hrubého [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext form-control-small" name="mzdaHruba" id="mzdaHruba" value="0">
+            </div> 
+            <div class="form-group">
+                <label for="mzdaCista" class="form-label">Čistého [Kč]</label>
+                <input type="number" readonly class="form-control-plaintext form-control-small" name="mzdaCista" id="mzdaCista" value="0">
+            </div> 
         </section>
-    </form>
+        <section class="info">
+            <small class="mt-4">Výpočet je orientační a nezohledňuje děti a další parametry, pro přesnou hodnotu zadejte vypočtenou čistou měsíční mzdu do kalkulátoru na Měšci nebo tak něco.</small>
 
+        </section>
+    </div>
+</form>
 
-<div class="container">
-</div>
 {% endblock %}

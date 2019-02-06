@@ -1,42 +1,27 @@
-h1 {
-    margin-top: 2em;
+h2 {
+    margin-bottom: 0.75em;
 }
 
-body {
-    background-color: #B9C6AF;
+.form-control-small {
+    width: 8em;
 }
 
-section {
-    padding: 2rem;
+// input:invalid {
+//     background-color: #C84630;
+//     color: #270722;
+//     font-weight: 700;
+// } 
+
+.grid-container {
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 2rem;
+    grid-auto-rows: minmax(10rem, auto);
+    grid-row-gap: 4rem;
 }
 
-label {
-    color: #361D2E;
-}
-
-.form-group {
-    margin-bottom: 2.5rem;
-    margin-top: 2.5rem;
-    outline: 1px dotted rgba(153, 148, 148, 0.7);
-    outline-offset: 5px;
-}
-
-input:invalid {
-    background-color: #C84630;
-    color: #270722;
-    font-weight: 700;
-} 
-
-a {
-    color: #114B5F;
-}
-
-.p-light {
-    color: #E5BE9E;
-    font-weight: 700;
-}
-
-.validation-error {
+.error {
     display: none;
     background-color: $danger;
     font-weight: 700;
@@ -44,30 +29,37 @@ a {
 }
 
 
-// Barvy sekcí
+// Sekce
 
-.hlavicka {
-    background-color: #361D2E
+.nadpis {
+    grid-column: 1 / 4;
+    grid-row: 1;
 }
 
 .zaklad {
-    background-color: #B2C4BC;
+    grid-column: 1;
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
 
 .stat {
-    background-color: #CBC0AD;
+    grid-column: 2;
+    grid-row: 2;
 }
 
 .odecist {
-    background-color: #E5BE9E;
+    grid-column: 3;
+    grid-row: 2;
 }
 
 .prehled {
-    background-color: #FCC594;
+    grid-column: 1;
+    grid-row: 3;
 }
 
 .vysledek {
-    background-color: #EDD892;
+    grid-column: 2;
+    grid-row: 3;
 }
 
 

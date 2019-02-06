@@ -11,7 +11,11 @@ let v = {
     nefakturovanoRocne: undefined,
 
     prijmy: undefined,
-    pausal: "0.6",
+    pausal30: 0.30,
+    pausal40: 0.40,
+    pausal60: 0.60,
+    pausal80: 0.80,
+    pausalNum: undefined, //přidávám, abych měla jak kalkulovat paušál
     danNaklady: undefined, //jsou tam dané tak, že nejdou zadat ručně; nebude dělat bordel, kdyby byly měnitelné?
     odecitatelne: 0,
     zakladDane: undefined,
@@ -52,14 +56,25 @@ let vypocitej = () => {
     }
 
     console.log(nefakturovanoJednotkaNum);
+    console.log(document.getElementById("pausal60").checked);
 
     // Počítá příjem v roce, resp. spíš obrat
     v.prijmy = (v.hodinDenne * v.dnyRealnePracovni - (v.nefakturovano * nefakturovanoJednotkaNum)) * v.hodinovka;
 
     v.nefakturovanoRocne = v.nefakturovano * nefakturovanoJednotkaNum;
 
+    if (document.getElementById("pausal60").checked === true) {
+        v.pausalNum = 0.60;
+    } else if (document.getElementById("pausal30").checked === true) {
+        v.pausalNum = 0.30;
+    }  else if (document.getElementById("pausal40").checked === true) {
+        v.pausalNum = 0.40;
+    }  else if (document.getElementById("pausal80").checked === true) {
+        v.pausalNum = 0.80;
+    } 
+
     // Daňově uznatelné náklady počítané podle zadaného paušálu
-    v.danNaklady = Math.round(v.prijmy * (1 - Number(v.pausal)));
+    v.danNaklady = Math.round(v.prijmy * (1 - Number(v.pausalNum)));
 
     // Základ daně - příjmy minus odečitatelné položky (dary atp.)
     v.zakladDane = v.danNaklady - v.odecitatelne;
