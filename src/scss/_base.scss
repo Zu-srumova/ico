@@ -1,3 +1,9 @@
+h1 {
+    font-size: 4rem;
+    margin-bottom: 0.75em;
+    text-align: center;
+}
+
 h2 {
     margin-bottom: 0.75em;
 }
@@ -48,6 +54,9 @@ h2 {
 .nadpis {
     grid-column: 1;
     grid-row: 1;
+    background-color: $warning;
+    padding: 5%;
+    margin: auto 5%;
 
     @include media-breakpoint-up(sm) {
         grid-column: 1 / 3;
@@ -60,3 +69,13 @@ h2 {
     }
 }
 
+.nadpis p {
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.5em;
+}
+
+.vysledek {
+    background-color: $warning;
+    padding: 1rem;
+}
