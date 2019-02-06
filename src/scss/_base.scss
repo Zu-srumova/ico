@@ -15,10 +15,24 @@ h2 {
 .grid-container {
     padding: 1rem;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 2rem;
+    grid-template-columns: 1fr;
     grid-auto-rows: minmax(10rem, auto);
     grid-row-gap: 4rem;
+
+    @include media-breakpoint-up(sm) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-column-gap: 2rem;
+        grid-auto-rows: minmax(10rem, auto);
+        grid-row-gap: 4rem;
+    }
+
+    @include media-breakpoint-up(lg) {
+        grid-template-columns: repeat(3, 1fr);
+        grid-column-gap: 2rem;
+        grid-auto-rows: minmax(10rem, auto);
+        grid-row-gap: 4rem;
+    }
+    
 }
 
 .error {
@@ -32,34 +46,17 @@ h2 {
 // Sekce
 
 .nadpis {
-    grid-column: 1 / 4;
+    grid-column: 1;
     grid-row: 1;
-}
 
-.zaklad {
-    grid-column: 1;
-    grid-row-start: 2;
-    grid-row-end: 3;
-}
+    @include media-breakpoint-up(sm) {
+        grid-column: 1 / 3;
+        grid-row: 1;
+    }
 
-.stat {
-    grid-column: 2;
-    grid-row: 2;
+    @include media-breakpoint-up(lg) {
+        grid-column: 1 / 4;
+        grid-row: 1;
+    }
 }
-
-.odecist {
-    grid-column: 3;
-    grid-row: 2;
-}
-
-.prehled {
-    grid-column: 1;
-    grid-row: 3;
-}
-
-.vysledek {
-    grid-column: 2;
-    grid-row: 3;
-}
-
 
