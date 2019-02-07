@@ -5,7 +5,7 @@ let v = {
     dovolena: 20,
     dnyRealnePracovni: undefined,
     hodinovka: 300,
-    hodinDenne: 5,
+    hodinDenne: 8,
     nefakturovano: 80,
     nefakturovanoJednotka: "y",
     nefakturovanoRocne: undefined,
@@ -13,13 +13,14 @@ let v = {
     prijmy: undefined,
     pausalNum: undefined,
     danNaklady: undefined, //jsou tam dané tak, že nejdou zadat ručně; nebude dělat bordel, kdyby byly měnitelné?
-    odecitatelne: 2000,
+    odecitatelne: 0,
     zakladDane: undefined,
     slevaPoplatnik: 24840,
     slevaDalsi: 2000,
     danSum: undefined,
     odvodySocialni: undefined,
     odvodyZdravotni: undefined,
+    odvodyNemocenska: 0,
     odvodySum: undefined,
     PrijmyPoZdaneni: undefined,
 
@@ -51,8 +52,8 @@ let reCount = () => {
         nefakturovanoJednotkaNum = v.dnyRealnePracovni;
     }
 
-    console.log(nefakturovanoJednotkaNum);
-    console.log(document.getElementById("pausal60").checked);
+    // console.log(nefakturovanoJednotkaNum);
+    // console.log(document.getElementById("pausal60").checked);
 
     // Počítá příjem v roce, resp. spíš obrat
     v.prijmy = (v.hodinDenne * v.dnyRealnePracovni - (v.nefakturovano * nefakturovanoJednotkaNum)) * v.hodinovka;
@@ -113,7 +114,7 @@ let reCount = () => {
 
     // Nahází vypočtené hodnoty z objektu zpátky do formuláře. Pokud najde daný klíč.
     Object.entries(v).forEach(([key, value]) => {
-        console.log(key, value);
+        // console.log(key, value);
         if (document.querySelector(`#${key}`)) {
             document.querySelector(`#${key}`).value = value;
         }
@@ -141,6 +142,15 @@ let applyChanges = (event) => {
 document.querySelectorAll("input, select").forEach((item) => {
     item.addEventListener("change", applyChanges);
 });
+
+// // Zobrazení detailů – TAK TROCHU NEFUNGUJE
+// let showDetails = () => {
+//     document.getElementsByClassName("detail").forEach((item) => {
+//         item.style.display = "block"
+//     })
+// };
+
+// showDetails();
 
 
 // Validation
