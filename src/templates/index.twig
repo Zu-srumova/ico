@@ -9,6 +9,7 @@
             <h1>IČO → HPP</h1>
             <p>Kalkukačka pro ty, kdo potřebují porovnat práci jako zaměstnanec a na IČO s hodinovou mzdou.</p>
             <p>Předpokládá, že člověk využívá daňový paušál a není plátce DPH.</p>
+
         </section>
 
         <noscript>
@@ -18,7 +19,7 @@
         <section class="zaklad"> 
             <h2>Základní údaje</h2>
 
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="dnyPracovniVRoce" class="form-label">Pracovních dní v roce</label>
                 <input type="number" readonly class="form-control-plaintext" name="dnyPracovniVRoce" id="dnyPracovniVRoce" value="2510" required>
             </div>
@@ -27,7 +28,7 @@
                 <input type="number"  class="form-control form-control-small" name="dovolena" id="dovolena" value="20" min="0" max="250" required>
                 <small class="form-text text-muted">Kolik pracovních dní dovolené si chcete dopřát?</small>
             </div>
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="dnyRealnePracovni" class="form-label">Dní k dispozici</label>
                 <input type="number" readonly class="form-control-plaintext" value="231" name="dnyRealnePracovni" id="dnyRealnePracovni">
                 <small class="form-text text-muted">Tolik dní je reálně k dispozici k práci (pracovní dny bez dovolené).</small>
@@ -51,7 +52,7 @@
                     <option value="d">denně</option>
                 </select>
             </div> 
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="nefakturovanoRocne" class="form-label">ročně</label>
                 <input type="number" readonly class="form-control-plaintext" name="nefakturovanoRocne" id="nefakturovanoRocne" min="0">
             </div> 
@@ -63,7 +64,7 @@
         <section class="stat">
             <h2>Vaše příjmy a daně</h2>
 
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="prijmy" class="form-label">Příjmy [Kč]</label>
                 <input type="number" readonly class="form-control-plaintext" name="prijmy" id="prijmy" value="322500">
             </div>
@@ -87,11 +88,11 @@
                 </div>
                 <small class="form-text text-muted">Jaký daňový paušál uplatňujete? <a href="http://www.jakpodnikat.cz/pausalni-vydaje-procentem.php target="_blank" rel="noopener noreferrer"">Nevíte-li, zjistěte.</a></small>
             </div>
-            <div class="form-group d-none">
+            <div class="form-group detail">
                     <label for="pausalNum" class="form-label">Číselná hodnota paušálu</label>
                     <input type="number" readonly class="form-control-plaintext" name="danNaklady" id="pausalNum">
                 </div> 
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="danNaklady" class="form-label">Daňově uzn. náklady [Kč]</label>
                 <input type="number" readonly class="form-control-plaintext" name="danNaklady" id="danNaklady">
             </div> 
@@ -100,7 +101,7 @@
                 <input type="number" class="form-control form-control-small" name="odecitatelne" id="odecitatelne">
                 <small class="form-text text-muted">Dary, krev, pojištění… Více informací najdete třeba <a href="https://www.mesec.cz/danovy-portal/dan-z-prijmu/odecitatelne-polozky/ target="_blank" rel="noopener noreferrer"">zde na Měšci</a>.</small>
             </div> 
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="zakladDane" class="form-label">Základ daně [Kč]</label>
                 <input type="number" readonly class="form-control-plaintext" name="zakladDane" id="zakladDane">
             </div> 
@@ -114,25 +115,31 @@
                 <input type="number" class="form-control form-control-small" name="slevaDalsi" id="slevaDalsi">
                 <small class="form-text text-muted">Sleva na dítě, manželku/manžela, studenta, školkovné… <a href="https://www.mesec.cz/danovy-portal/dan-z-prijmu/slevy-na-dani/" target="_blank" rel="noopener noreferrer">viz Měšec.</a></small>
             </div> 
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="danSum" class="form-label">Daň [Kč]</label>
-                <input type="number" readonly class="form-control-plaintext" name="danSum" id="danSum" value="0">
+                <input type="number" readonly class="form-control-plaintext" name="danSum" id="danSum">
             </div> 
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="odvodySocialni" class="form-label">Sociální pojištění [Kč]</label>
-                <input type="number" readonly class="form-control-plaintext" name="odvodySocialni" id="odvodySocialni" value="0">
+                <input type="number" readonly class="form-control-plaintext" name="odvodySocialni" id="odvodySocialni">
             </div> 
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="odvodyZdravotni" class="form-label">Zdrav. pojištění [Kč]</label>
-                <input type="number" readonly class="form-control-plaintext" name="odvodyZdravotni" id="odvodyZdravotni" value="0">
+                <input type="number" readonly class="form-control-plaintext" name="odvodyZdravotni" id="odvodyZdravotni">
             </div> 
-            <div class="form-group d-none">
+            <!-- Přidávám kvůli mateřské -->
+            <div class="form-group"> 
+                <label for="odvodyNemocenska" class="form-label">Měsíční nemocenské pojištení [Kč]</label>
+                <input type="number" class="form-control" name="odvodyNemocenska" id="odvodyNemocenska">
+                <small class="form-text text-muted">Nemocenské pojištění není povinné, můžete si ho platit dobrovolně. Kromě případné podpory v nemoci jeho určitá výše zakládá nárok na mateřskou. <a href="https://www.penize.cz/kalkulacky/materska-osvc#materska-osvc-2019" target="_blank" rel="noopener noreferrer">Kalkulace výše mateřské</a></small>
+            </div> 
+            <div class="form-group detail">
                 <label for="odvodySum" class="form-label">Odvody celkem [Kč]</label>
-                <input type="number" readonly class="form-control-plaintext" name="odvodySum" id="odvodySum" value="0">
+                <input type="number" readonly class="form-control-plaintext" name="odvodySum" id="odvodySum">
             </div> 
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="PrijmyPoZdaneni" class="form-label">Příjmy po zdanění [Kč]</label>
-                <input type="number"  readonly class="form-control-plaintext" name="PrijmyPoZdaneni" id="PrijmyPoZdaneni" value="0">
+                <input type="number"  readonly class="form-control-plaintext" name="PrijmyPoZdaneni" id="PrijmyPoZdaneni">
             </div> 
         </section>
 
@@ -143,7 +150,7 @@
                 <input type="number" class="form-control form-control-small" name="odecistNaklady" id="odecistNaklady" min="0" value="0">
                 <small class="form-text text-muted">Náklady na podnikání: pracovní nástroje a materiál, účetní, pojištění, doprava k zákazníkům…</small>
             </div> 
-            <div class="form-group d-none">
+            <div class="form-group detail">
                 <label for="penezKPouziti" class="form-label">Peněz k dispozici [Kč]</label>
                 <input type="number" readonly class="form-control-plaintext form-control-small" name="penezKPouziti" id="penezKPouziti" min="0" value="0">
                 <small class="form-text text-muted">Kolik reálně po odečtení nákladů vyděláte?</small>
@@ -151,7 +158,7 @@
             <div class="form-group">
                 <label for="odecistRezerva" class="form-label">Rezerva [měsíce]</label>
                 <input type="number" class="form-control form-control-small" name="odecistRezerva" id="odecistRezerva" min="0" value="1.5" max="12" step="0.25" required>
-                <small class="form-text text-muted">Zaměstnanec při výpovědi dostane odstupné.<br>Na jak velkou rezervu si chcete za rok uspořit vy?</small>
+                <small class="form-text text-muted">Zaměstnanec při výpovědi dostane odstupné.<br>Při délce zaměstnání méně než rok 1 průměrný plat, při délce 1–2 roky dva platy, při delší délce tři platy.<br>Na jak velkou rezervu si chcete za rok naspořit vy?</small>
             </div> 
         </section>
 
@@ -187,7 +194,11 @@
             </div> 
         </section>
         <section class="info">
-            <small>Výpočet hrubé mzdy je orientační a nezohledňuje děti a další parametry.<br>Pro přesnou hodnotu zadejte vypočtenou čistou měsíční mzdu do kalkulátoru na Měšci nebo tak něco.</small>
+            <p>Výpočet hrubé mzdy je orientační a nezohledňuje děti a další parametry. Pro přesnou hodnotu zadejte vypočtenou čistou měsíční mzdu do kalkulátoru na Měšci nebo jinde.</p>
+            <p>Kalkulačka je cvičný projekt vycházející z tabulky Dana Srba. Pokud vám něco nefunguje, potřebujete měnit něco, co je napevno zadané, nebo chcete rozepsat náklady podrobněji, <a href="http://bit.ly/osvc-v-zamestnanec-2019" target="_blank" rel="noopener noreferrer">zkuste Danovu tabulku</a>.</p>
+            <p>Během chvíle [v jednotce dní] zde přibyde možnost zobrazit <b>podrobný výpočet</b> a upravit odvody tak, aby zakládaly <b>nárok na mateřskou</b>.</p>
+            <p>Budu ráda za zpětnou vazbu na <a href="mailto:zu.srumova@gmail.com">zu.srumova@gmail.com</a>.</p>
+            <p>Díky, Zuzka</p>
 
         </section>
     </div>
