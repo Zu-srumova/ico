@@ -84,7 +84,7 @@ let reCount = () => {
     v.odvodyZdravotni = Math.round(0.135 * Math.max((v.prijmy - v.danNaklady) * 0.5, 196194));
 
     // Co celkem člověk odvede - daně, zdravotko, socka
-    v.odvodySum = v.odvodySocialni + v.odvodyZdravotni + v.danSum;
+    v.odvodySum = v.odvodySocialni + v.odvodyZdravotni + v.odvodyNemocenska * 12 + v.danSum;
     v.PrijmyPoZdaneni = v.prijmy - v.odvodySum;
 
 
