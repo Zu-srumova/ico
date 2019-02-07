@@ -124,16 +124,15 @@ let reCount = () => {
 reCount();
 
 
-// Zachytí změnu na políčkách ve formuláři, narve to do objektu „v“ a spustí počítání. Bohužel se už nejmenuje Miloš, protože se to Danovi nelíbí.
+// Zpracovává event, narve to do objektu „v“ a spustí počítání. Bohužel se už nejmenuje Miloš, protože se to Danovi nelíbí.
 let applyChanges = (event) => {
-    if (v[event.target.id]) {
-        if (event.target.valueAsNumber === undefined) {
+    if (v[event.target.id] != undefined) {
+        if (event.target.valueAsNumber === undefined) { // neni cislo
             v[event.target.id] = event.target.value;
-        } else {
+        } else { // je cislo
             v[event.target.id] = event.target.valueAsNumber;
         }    
     }
-    
     reCount();
 };
 
