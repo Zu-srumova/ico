@@ -142,15 +142,9 @@ document.querySelectorAll("input, select").forEach((item) => {
     item.addEventListener("change", applyChanges);
 });
 
-// // Zobrazení detailů – TAK TROCHU NEFUNGUJE
-// let showDetails = () => {
-//     document.getElementsByClassName("detail").forEach((item) => {
-//         item.style.display = "block"
-//     })
-// };
-
-// showDetails();
-
+document.getElementById("zobrazDetaily").addEventListener("click", function() {
+    document.getElementById("form").classList.toggle("showall");
+});
 
 // Validation
 
