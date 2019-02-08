@@ -66,7 +66,8 @@
     //        "300": $gray-300,
     //        "400": $gray-400,
     //        "500": $gray-500,
-    //        "600": $gray-600,
+    //    
+    
     //        "700": $gray-700,
     //        "800": $gray-800,
     //        "900": $gray-900
@@ -85,9 +86,9 @@
 
     // uncomment whole block, the following variable uses map-merge(),
     // so you can define only new ones you need
-    /*
-    $colors: (
-    //        "blue": $blue,
+  
+//     $colors: (
+//            "blue": $blue,
     //        "indigo": $indigo,
     //        "purple": $purple,
     //        "pink": $pink,
@@ -100,10 +101,10 @@
     //        "white": $white,
     //        "gray": $gray-600,
     //        "gray-dark": $gray-800
-    ); $colors: $colors !global;
-    */
+//     ); $colors: $colors !global;
 
-    // $primary: $blue; $primary: $primary !global; // $blue
+
+   $primary: #124E78; $primary: $primary !global; // $blue
     // $secondary: $gray-600; $secondary: $secondary !global; // $gray-600
     // $success: $green; $success: $success !global; // $green
     // $info: $cyan; $info: $info !global; // $cyan

@@ -4,23 +4,27 @@ body {
 
 h1 {
     font-size: 4rem;
-    margin-bottom: 0.75em;
     text-align: center;
     font-family: 'Montserrat Alternates', sans-serif;
-
 }
 
 h2 {
     margin-bottom: 0.75em;
-
 }
 
 a {
     text-decoration: none;
+    color: $primary;
 }
 
 .form-control-small {
     width: 8em;
+}
+
+.osvc-motto {
+    font-weight: 700;
+    letter-spacing: 0.085em;
+    margin-bottom: 2em;
 }
 
 // input:invalid {
@@ -97,7 +101,7 @@ a {
 }
 
 .nadpis p {
-    font-size: 1.25rem;
+    font-size: 1.2rem;
     line-height: 1.5em;
 
 }
