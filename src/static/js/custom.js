@@ -126,16 +126,18 @@ reCount();
 
 // Zpracovává event, narve to do objektu „v“ a spustí počítání. Bohužel se už nejmenuje Miloš, protože se to Danovi nelíbí.
 let applyChanges = (event) => {
+    console.log(event.target.value === "");
     if (v[event.target.id] != undefined) {
         if (event.target.valueAsNumber === undefined) { // neni cislo
             v[event.target.id] = event.target.value;
+        } else if (event.target.value === "") {
+            v[event.target.id] = 0;
         } else { // je cislo
             v[event.target.id] = event.target.valueAsNumber;
         }    
     }
     reCount();
 };
-
 
 // Inputům a selectům nastaví, aby, když se jejich hodnota změní, spustili Miloše
 document.querySelectorAll("input, select").forEach((item) => {
